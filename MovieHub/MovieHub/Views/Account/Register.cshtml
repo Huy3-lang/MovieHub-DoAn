@@ -1,0 +1,344 @@
+﻿```cshtml
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<style>
+    /* ================================
+           REGISTER PAGE
+           ================================ */
+
+    .register-page {
+        min-height: calc(100vh - 70px);
+        padding: 60px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #08080b;
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 480px;
+        padding: 40px;
+        background: #15151b;
+        border: 1px solid #2d2d38;
+        border-radius: 18px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    /* LOGO */
+
+    .register-logo {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        background: #8b5cf6;
+        border-radius: 50%;
+        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+    }
+
+    /* TITLE */
+
+    .register-title {
+        margin: 0;
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+        .register-title span {
+            color: #8b5cf6;
+        }
+
+    .register-subtitle {
+        margin: 10px 0 30px;
+        text-align: center;
+        color: #999;
+        font-size: 14px;
+    }
+
+    /* ERROR */
+
+    .register-error {
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        color: #ffb3b3;
+        background: rgba(229, 9, 20, 0.12);
+        border: 1px solid rgba(229, 9, 20, 0.4);
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    /* FIELD */
+
+    .register-field {
+        margin-bottom: 20px;
+    }
+
+        .register-field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .register-field input {
+            width: 100%;
+            height: 50px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            color: white;
+            background: #101014;
+            border: 1px solid #383842;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+            .register-field input::placeholder {
+                color: #777;
+            }
+
+            .register-field input:focus {
+                border-color: #8b5cf6;
+                box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+            }
+
+    /* REGISTER BUTTON */
+
+    .register-submit {
+        width: 100%;
+        height: 52px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 8px;
+        background: #8b5cf6;
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+        .register-submit:hover {
+            background: #a78bfa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+        }
+
+    /* LOGIN BUTTON */
+
+    .register-login {
+        margin-top: 25px;
+        padding-top: 22px;
+        text-align: center;
+        color: #999;
+        border-top: 1px solid #2d2d35;
+    }
+
+    .register-login-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+        padding: 9px 16px;
+        color: white;
+        background: #211a32;
+        border: 1px solid #8b5cf6;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+        .register-login-button:hover {
+            background: #8b5cf6;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    /* HOME BUTTON */
+
+    .register-home-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        margin: 20px auto 0;
+        padding: 9px 18px;
+        color: #aaa;
+        background: #101014;
+        border: 1px solid #383842;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size: 13px;
+        transition: 0.2s ease;
+    }
+
+        .register-home-button:hover {
+            color: white;
+            border-color: #8b5cf6;
+            background: #211a32;
+        }
+
+    /* MOBILE */
+
+    @@media (max-width: 500px) {
+
+        .register-page {
+            padding: 35px 15px;
+        }
+
+        .register-card {
+            padding: 30px 22px;
+        }
+
+        .register-title {
+            font-size: 25px;
+        }
+
+        .register-login {
+            line-height: 2.2;
+        }
+
+        .register-login-button {
+            margin-top: 8px;
+            margin-left: 0;
+        }
+    }
+</style>
+
+
+<div class="register-page">
+
+    <div class="register-card">
+
+        <!-- LOGO -->
+        <div class="register-logo">
+            🎬
+        </div>
+
+
+        <!-- TIÊU ĐỀ -->
+        <h1 class="register-title">
+            Tạo tài khoản <span>MovieHub</span>
+        </h1>
+
+        <p class="register-subtitle">
+            Đăng ký để khám phá thế giới phim
+        </p>
+
+
+        <!-- THÔNG BÁO LỖI -->
+        @if (ViewBag.Error != null)
+        {
+            <div class="register-error">
+                ⚠️ @ViewBag.Error
+            </div>
+        }
+
+
+        <!-- FORM -->
+        <form asp-controller="Account"
+              asp-action="Register"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+
+            <!-- USERNAME -->
+            <div class="register-field">
+
+                <label>
+                    👤 Tên tài khoản
+                </label>
+
+                <input type="text"
+                       name="username"
+                       placeholder="Nhập tên tài khoản"
+                       autocomplete="username"
+                       required />
+
+            </div>
+
+
+            <!-- EMAIL -->
+            <div class="register-field">
+
+                <label>
+                    📧 Email
+                </label>
+
+                <input type="email"
+                       name="email"
+                       placeholder="Nhập email của bạn"
+                       autocomplete="email" />
+
+            </div>
+
+
+            <!-- PASSWORD -->
+            <div class="register-field">
+
+                <label>
+                    🔐 Mật khẩu
+                </label>
+
+                <input type="password"
+                       name="password"
+                       placeholder="Nhập mật khẩu"
+                       autocomplete="new-password"
+                       required />
+
+            </div>
+
+
+            <!-- ĐĂNG KÝ -->
+            <button type="submit"
+                    class="register-submit">
+
+                ✨ Đăng ký tài khoản
+
+            </button>
+
+        </form>
+
+
+        <!-- ĐĂNG NHẬP -->
+        <div class="register-login">
+
+            <span>Đã có tài khoản?</span>
+
+            <a asp-controller="Account"
+               asp-action="Login"
+               class="register-login-button">
+
+                🔐 Đăng nhập ngay
+
+            </a>
+
+        </div>
+
+
+        <!-- QUAY VỀ -->
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="register-home-button">
+
+            ← Quay về MovieHub
+
+        </a>
+
+    </div>
+
+</div>
+```

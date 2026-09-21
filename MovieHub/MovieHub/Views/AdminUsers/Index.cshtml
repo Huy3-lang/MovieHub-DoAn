@@ -1,0 +1,174 @@
+﻿@model IEnumerable<MovieHub.Models.User>
+
+@{
+    ViewData["Title"] = "Quản lý người dùng";
+}
+
+<div class="container py-5">
+
+    <!-- TIÊU ĐỀ -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h1>
+            👥 Quản lý người dùng
+        </h1>
+
+        <a asp-controller="Admin"
+           asp-action="Index"
+           class="btn btn-secondary">
+
+            ← Quay lại quản trị
+
+        </a>
+
+    </div>
+
+
+    <!-- BẢNG USER -->
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Tài khoản</th>
+
+                            <th>Email</th>
+
+                            <th>Quyền</th>
+
+                            <th>Thao tác</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @user.Id
+                                </td>
+
+
+                                <td>
+
+                                    <strong>
+                                        @user.Username
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+                                    @user.Email
+                                </td>
+
+
+                                <td>
+
+                                    @if (user.IsAdmin)
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            👑 Admin
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            👤 User
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                
+                                    <td>
+
+                                        <!-- CẤP / HỦY ADMIN -->
+
+                                        <form asp-controller="AdminUsers"
+                                              asp-action="ToggleAdmin"
+                                              asp-route-id="@user.Id"
+                                              method="post"
+                                              class="d-inline">
+
+                                            @Html.AntiForgeryToken()
+
+                                            @if (user.IsAdmin)
+                                            {
+                                                <button type="submit"
+                                                        class="btn btn-secondary btn-sm"
+                                                        onclick="return confirm('Bạn có muốn hủy quyền Admin của tài khoản này không?');">
+
+                                                    👤 Hủy Admin
+
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit"
+                                                        class="btn btn-warning btn-sm"
+                                                        onclick="return confirm('Bạn có muốn cấp quyền Admin cho tài khoản này không?');">
+
+                                                    👑 Cấp Admin
+
+                                                </button>
+                                            }
+
+                                        </form>
+
+
+                                        <!-- XÓA -->
+                                        @if (user.Username != Context.Session.GetString("Username"))
+                                        {
+                                            <form asp-controller="AdminUsers"
+                                                  asp-action="Delete"
+                                                  asp-route-id="@user.Id"
+                                                  method="post"
+                                                  class="d-inline">
+
+                                                @Html.AntiForgeryToken()
+
+                                                <button type="submit"
+                                                        class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản @user.Username không?');">
+
+                                                    🗑️ Xóa
+
+                                                </button>
+
+                                            </form>
+                                        }
+
+                                    </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,180 @@
+﻿@model IEnumerable<MovieHub.Models.Movie>
+
+@{
+    var title = ViewData["Title"]?.ToString() ?? "Danh sách phim";
+}
+
+<div class="container py-5">
+
+    <div class="section-title mb-4">
+
+        <div>
+            <span class="section-small-title">
+                MOVIEHUB
+            </span>
+
+            <h2>
+                @title
+            </h2>
+        </div>
+        <div class="movie-filter-box">
+
+            <form method="get"
+                  class="movie-filter-form">
+
+                <div class="movie-filter-group">
+
+                    <label>
+                        📅 Năm phát hành
+                    </label>
+
+                    <select name="year"
+                            class="movie-filter-select">
+
+                        <option value="">
+                            Tất cả các năm
+                        </option>
+
+                        @foreach (var year in ViewBag.Years)
+                        {
+                            <option value="@year"
+                                    selected="@(ViewBag.SelectedYear == year)">
+
+                                @year
+
+                            </option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <button type="submit"
+                        class="movie-filter-button">
+
+                    🔍 Lọc phim
+
+                </button>
+
+                @if (ViewBag.SelectedYear != null)
+                {
+                    <a asp-controller="Movies"
+                       asp-action="@(ViewData["Title"]?.ToString() == "Phim lẻ"
+                                           ? "SingleMovies"
+                                           : "SeriesMovies")"
+                       class="movie-filter-reset">
+
+                        ✕ Xóa bộ lọc
+
+                    </a>
+                }
+
+            </form>
+
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="view-all">
+            ← Trang chủ
+        </a>
+
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row g-4">
+
+            @foreach (var movie in Model)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+
+                    <div class="movie-card">
+
+                        <div class="movie-poster-wrapper">
+
+                            <img src="@movie.PosterUrl"
+                                 class="movie-poster"
+                                 alt="@movie.Title" />
+
+                            <div class="movie-overlay">
+
+                                <a asp-controller="Movies"
+                                   asp-action="Details"
+                                   asp-route-id="@movie.Id"
+                                   class="play-button">
+                                    ▶
+                                </a>
+
+                            </div>
+
+                            <div class="movie-year">
+                                @movie.ReleaseYear
+                            </div>
+
+                        </div>
+
+                        <div class="movie-info">
+
+                            <h3 class="movie-title">
+                                @movie.Title
+                            </h3>
+
+                            <div class="movie-meta">
+
+                                <span>
+                                    📅 @movie.ReleaseYear
+                                </span>
+
+                                <span>
+                                    ⏱ @movie.Duration phút
+                                </span>
+
+                            </div>
+                            @{
+                                var rating = ((IEnumerable<dynamic>)ViewBag.Ratings)
+                                    .FirstOrDefault(r => r.MovieId == movie.Id);
+                            }
+
+                            @if (rating != null)
+                            {
+                                <div class="movie-rating-summary">
+                                    ⭐ @rating.Average.ToString("0.0")
+                                    <span>· @rating.Count đánh giá</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="movie-rating-summary">
+                                    ⭐ Chưa có đánh giá
+                                </div>
+                            }
+
+                            <div class="movie-category">
+                                🎭 @movie.Category?.Name
+                            </div>
+
+                            <a asp-controller="Movies"
+                               asp-action="Details"
+                               asp-route-id="@movie.Id"
+                               class="watch-button">
+                                ▶ Xem phim
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="no-episodes">
+            🎬 Hiện chưa có phim trong danh mục này.
+        </div>
+    }
+
+</div>

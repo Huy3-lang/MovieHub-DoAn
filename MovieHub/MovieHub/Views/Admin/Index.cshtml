@@ -1,0 +1,343 @@
+﻿@{
+    ViewData["Title"] = "Quản trị MovieHub";
+}
+
+<div class="admin-dashboard">
+
+    <div class="container py-5">
+
+        <!-- HEADER -->
+        <div class="admin-header mb-5">
+
+            <div>
+                <span class="admin-label">
+                    MOVIEHUB ADMIN
+                </span>
+
+                <h1>
+                    ⚙️ Dashboard quản trị
+                </h1>
+
+                <p>
+                    Quản lý toàn bộ nội dung và tài khoản của MovieHub.
+                </p>
+            </div>
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-outline-light">
+                ← Về MovieHub
+            </a>
+
+        </div>
+
+
+        <!-- THỐNG KÊ -->
+        <div class="row g-4 mb-5">
+
+            <!-- PHIM -->
+            <div class="col-xl-3 col-md-6">
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        🎬
+                    </div>
+
+                    <div>
+                        <span>
+                            Tổng số phim
+                        </span>
+
+                        <strong>
+                            @ViewBag.MovieCount
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- USER -->
+            <div class="col-xl-3 col-md-6">
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        👥
+                    </div>
+
+                    <div>
+                        <span>
+                            Người dùng
+                        </span>
+
+                        <strong>
+                            @ViewBag.UserCount
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EPISODE -->
+            <div class="col-xl-3 col-md-6">
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        🎞️
+                    </div>
+
+                    <div>
+                        <span>
+                            Tổng số tập
+                        </span>
+
+                        <strong>
+                            @ViewBag.EpisodeCount
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+            <div class="col-xl-3 col-md-6">
+
+                <div class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        🎭
+                    </div>
+
+                    <div>
+                        <span>
+                            Thể loại
+                        </span>
+
+                        <strong>
+                            @ViewBag.CategoryCount
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUẢN LÝ -->
+        <div class="admin-section-title">
+
+            <span>
+                QUẢN LÝ
+            </span>
+
+            <h2>
+                Các chức năng quản trị
+            </h2>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- QUẢN LÝ PHIM -->
+            <div class="col-lg-3 col-md-6">
+
+                <a asp-controller="AdminMovies"
+                   asp-action="Index"
+                   class="admin-menu-card">
+
+                    <div class="admin-menu-icon">
+                        🎬
+                    </div>
+
+                    <h3>
+                        Quản lý phim
+                    </h3>
+
+                    <p>
+                        Thêm, sửa, xóa và quản lý
+                        thông tin các bộ phim.
+                    </p>
+
+                    <span class="admin-menu-button">
+                        🎬 Mở quản lý →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- QUẢN LÝ NGƯỜI DÙNG -->
+            <div class="col-lg-3 col-md-6">
+
+                <a asp-controller="AdminUsers"
+                   asp-action="Index"
+                   class="admin-menu-card">
+
+                    <div class="admin-menu-icon">
+                        👥
+                    </div>
+
+                    <h3>
+                        Quản lý người dùng
+                    </h3>
+
+                    <p>
+                        Xem tài khoản, cấp quyền Admin
+                        và quản lý người dùng.
+                    </p>
+
+                    <span class="admin-menu-button">
+                        👥 Mở quản lý →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- QUẢN LÝ TẬP PHIM -->
+            <div class="col-lg-3 col-md-6">
+
+                <a asp-controller="AdminEpisodes"
+                   asp-action="Index"
+                   class="admin-menu-card">
+
+                    <div class="admin-menu-icon">
+                        🎞️
+                    </div>
+
+                    <h3>
+                        Quản lý tập phim
+                    </h3>
+
+                    <p>
+                        Thêm, sửa, xóa và quản lý
+                        các tập phim.
+                    </p>
+
+                    <span class="admin-menu-button">
+                        🎞️ Mở quản lý →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- QUẢN LÝ BÌNH LUẬN -->
+            <div class="col-lg-3 col-md-6">
+
+                <a asp-controller="AdminComments"
+                   asp-action="Index"
+                   class="admin-menu-card">
+
+                    <div class="admin-menu-icon">
+                        💬
+                    </div>
+
+                    <h3>
+                        Quản lý bình luận
+                    </h3>
+
+                    <p>
+                        Xem và xóa các bình luận
+                        trên MovieHub.
+                    </p>
+
+                    <span class="admin-menu-button">
+                        💬 Mở quản lý →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+        
+    </div>
+</div> 
+<style>
+    /* ===== CARD QUẢN LÝ ADMIN - MÀU TÍM ===== */
+
+    .admin-dashboard .admin-menu-card {
+        display: block !important;
+        height: 100% !important;
+        padding: 28px !important;
+        background: linear-gradient(145deg, #2a1748, #171025) !important;
+        border: 2px solid #7137a8 !important;
+        border-radius: 18px !important;
+        color: white !important;
+        text-decoration: none !important;
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25) !important;
+        transition: 0.25s ease !important;
+    }
+
+        .admin-dashboard .admin-menu-card:hover {
+            transform: translateY(-7px) !important;
+            background: linear-gradient(145deg, #43236d, #24143d) !important;
+            border-color: #b56cff !important;
+            box-shadow: 0 12px 35px rgba(168, 85, 247, 0.45) !important;
+        }
+
+    /* ICON */
+    .admin-dashboard .admin-menu-icon {
+        width: 55px !important;
+        height: 55px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 18px !important;
+        background: rgba(168, 85, 247, 0.18) !important;
+        border: 1px solid #8b4dcc !important;
+        border-radius: 14px !important;
+        font-size: 27px !important;
+    }
+
+    /* TIÊU ĐỀ */
+    .admin-dashboard .admin-menu-card h3 {
+        color: #ffffff !important;
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* MÔ TẢ */
+    .admin-dashboard .admin-menu-card p {
+        color: #cbb9df !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* NÚT */
+    .admin-dashboard .admin-menu-button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 18px !important;
+        background: linear-gradient( 135deg, #7c3aed, #a855f7 ) !important;
+        border-radius: 10px !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35) !important;
+    }
+
+    .admin-dashboard .admin-menu-card:hover .admin-menu-button {
+        background: linear-gradient( 135deg, #9333ea, #c084fc ) !important;
+        transform: translateX(5px) !important;
+    }
+</style>

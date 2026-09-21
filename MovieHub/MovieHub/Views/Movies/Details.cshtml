@@ -1,0 +1,1085 @@
+﻿@model MovieHub.Models.Movie
+
+@{
+    ViewData["Title"] = Model.Title;
+
+    var firstEpisode = Model.Episodes?
+        .OrderBy(e => e.EpisodeNumber)
+        .FirstOrDefault();
+}
+
+<div class="movie-details-page">
+
+    <!-- BACKGROUND -->
+    <div class="movie-details-background"
+         style="background-image: url('@Model.PosterUrl');">
+    </div>
+
+    <div class="movie-details-overlay">
+
+        <div class="container py-5">
+
+            <!-- =========================
+                 THÔNG TIN CHÍNH
+            ========================== -->
+            <div class="row align-items-center g-5">
+
+                <!-- POSTER -->
+                <div class="col-lg-4 col-md-5">
+
+                    <div class="details-poster">
+
+                        <img src="@Model.PosterUrl"
+                             alt="@Model.Title" />
+
+                    </div>
+
+                </div>
+
+
+                <!-- THÔNG TIN PHIM -->
+                <div class="col-lg-8 col-md-7">
+
+                    <div class="details-info">
+
+                        <!-- TAG -->
+                        <div class="details-top-tags">
+
+                            <span class="details-category">
+                                🎭 @Model.Category?.Name
+                            </span>
+
+                            @if (Model.Episodes != null &&
+                                 Model.Episodes.Count > 1)
+                            {
+                                <span class="details-type">
+                                    📺 Phim bộ
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="details-type">
+                                    🎬 Phim lẻ
+                                </span>
+                            }
+
+                        </div>
+
+
+                        <!-- TÊN PHIM -->
+                        <h1>
+                            @Model.Title
+                        </h1>
+
+
+                        <!-- THÔNG TIN -->
+                        <div class="details-meta">
+
+                            <span>
+                                📅 @Model.ReleaseYear
+                            </span>
+
+                            <span>
+                                ⏱ @Model.Duration phút
+                            </span>
+
+                            @if (Model.Episodes != null)
+                            {
+                                <span>
+                                    📺 @Model.Episodes.Count tập
+                                </span>
+                            }
+
+                        </div>
+
+
+                        <!-- ĐÁNH GIÁ TRUNG BÌNH -->
+                        <div class="details-rating">
+
+                            <span class="rating-average">
+                                ⭐
+                                @(ViewBag.RatingCount > 0
+                                    ? ViewBag.AverageRating.ToString("0.0")
+                                    : "Chưa có")
+                            </span>
+
+                            <span>
+                                @ViewBag.RatingCount lượt đánh giá
+                            </span>
+
+                        </div>
+
+
+                        <!-- MÔ TẢ -->
+                        <p class="details-description">
+
+                            @(string.IsNullOrWhiteSpace(Model.Description)
+                                ? "Chưa có mô tả cho bộ phim này."
+                                : Model.Description)
+
+                        </p>
+
+
+                        <!-- =========================
+                             NÚT CHỨC NĂNG
+                        ========================== -->
+                        <div class="details-buttons">
+
+                            <!-- XEM PHIM -->
+                            @if (firstEpisode != null)
+                            {
+                                <a asp-controller="Movies"
+                                   asp-action="Watch"
+                                   asp-route-id="@firstEpisode.Id"
+                                   class="details-watch-button">
+
+                                    ▶ Xem phim
+
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="details-watch-button"
+                                        disabled>
+
+                                    ⚠ Chưa có tập phim
+
+                                </button>
+                            }
+
+
+                            <!-- YÊU THÍCH -->
+                            @if (Context.Session.GetInt32("UserId") != null)
+                            {
+                                <form asp-controller="Favorite"
+                                      asp-action="Toggle"
+                                      method="post"
+                                      class="d-inline">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <input type="hidden"
+                                           name="movieId"
+                                           value="@Model.Id" />
+
+                                    @if (ViewBag.IsFavorite == true)
+                                    {
+                                        <button type="submit"
+                                                class="favorite-button active">
+
+                                            ❤️ Đã yêu thích
+
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit"
+                                                class="favorite-button">
+
+                                            ♡ Thêm yêu thích
+
+                                        </button>
+                                    }
+
+                                </form>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account"
+                                   asp-action="Login"
+                                   class="detail-purple-button">
+
+                                    🔐 Đăng nhập để yêu thích
+
+                                </a>
+                            }
+
+                        </div>
+
+
+                        <!-- =========================
+                             ĐÁNH GIÁ
+                        ========================== -->
+                        @if (Context.Session.GetInt32("UserId") != null)
+                        {
+                            <div class="rating-box">
+
+                                <h3>
+                                    ⭐ Đánh giá phim
+                                </h3>
+
+                                <p>
+
+                                    @(ViewBag.UserRating > 0
+                                        ? $"Bạn đã đánh giá {ViewBag.UserRating}/5 sao."
+                                        : "Hãy chọn số sao bạn muốn đánh giá.")
+
+                                </p>
+
+                                <form asp-controller="Rating"
+                                      asp-action="Submit"
+                                      method="post">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <input type="hidden"
+                                           name="movieId"
+                                           value="@Model.Id" />
+
+                                    <div class="rating-stars">
+
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            <button type="submit"
+                                                    name="score"
+                                                    value="@i"
+                                                    class="rating-star">
+
+                                                <span>★</span>
+
+                                            </button>
+                                        }
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account"
+                               asp-action="Login"
+                               class="detail-purple-button">
+
+                                ⭐ Đăng nhập để đánh giá phim
+
+                            </a>
+                        }
+
+
+                        <!-- VỀ TRANG CHỦ -->
+                        <a asp-controller="Home"
+                           asp-action="Index"
+                           class="home-button">
+
+                            ← Trang chủ
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 DANH SÁCH TẬP
+            ========================== -->
+            @if (Model.Episodes != null &&
+                             Model.Episodes.Any())
+            {
+                <div class="episodes-section">
+
+                    <!-- TIÊU ĐỀ -->
+                    <div class="episodes-title">
+
+                        <div>
+
+                            <span>
+                                MOVIEHUB
+                            </span>
+
+                            <h2>
+                                📺 Danh sách tập
+                            </h2>
+
+                        </div>
+
+                        <small>
+                            @Model.Episodes.Count tập
+                        </small>
+
+                    </div>
+
+
+                    <!-- DANH SÁCH -->
+                    <div class="episode-list">
+
+                        @foreach (var episode in Model.Episodes
+                            .OrderBy(e => e.EpisodeNumber))
+                        {
+                            <a asp-controller="Movies"
+                               asp-action="Watch"
+                               asp-route-id="@episode.Id"
+                               class="episode-card">
+
+                                <div class="episode-number">
+
+                                    @episode.EpisodeNumber
+
+                                </div>
+
+                                <div class="episode-info">
+
+                                    <strong>
+
+                                        @(string.IsNullOrWhiteSpace(episode.Title)
+                                            ? $"Tập {episode.EpisodeNumber}"
+                                            : episode.Title)
+
+                                    </strong>
+
+                                    <small>
+                                        ▶ Xem tập phim
+                                    </small>
+
+                                </div>
+
+                            </a>
+                        }
+
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div class="no-episodes">
+
+                    <div class="no-episodes-icon">
+                        📺
+                    </div>
+
+                    <h3>
+                        Chưa có tập phim
+                    </h3>
+
+                    <p>
+                        Bộ phim này hiện chưa có tập để xem.
+                    </p>
+
+                </div>
+            }
+
+
+            <!-- =========================
+                 BÌNH LUẬN
+            ========================== -->
+
+            <div class="comments-section">
+
+                <div class="comments-title">
+
+                    <span>
+                        MOVIEHUB
+                    </span>
+
+                    <h2>
+                        💬 Bình luận
+                    </h2>
+
+                </div>
+
+
+                <!-- =========================
+                     FORM BÌNH LUẬN
+                ========================== -->
+                @if (Context.Session.GetInt32("UserId") != null)
+                {
+                    <div class="comment-box">
+
+                        <div class="comment-title">
+
+                            <span class="comment-title-icon">
+                                💬
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    Viết bình luận
+                                </h3>
+
+                                <p>
+                                    Chia sẻ cảm nhận của bạn về bộ phim
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <form asp-controller="Comment"
+                              asp-action="Add"
+                              method="post">
+
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden"
+                                   name="movieId"
+                                   value="@Model.Id" />
+
+
+                            <div class="comment-input-wrap">
+
+                                <div class="comment-user-icon">
+                                    👤
+                                </div>
+
+                                <textarea name="content"
+                                          maxlength="1000"
+                                          rows="5"
+                                          placeholder="Bạn nghĩ gì về bộ phim này?"
+                                          required></textarea>
+
+                            </div>
+
+
+                            <div class="comment-bottom">
+
+                                <span class="comment-hint">
+                                    ✨ Hãy chia sẻ cảm nhận của bạn
+                                </span>
+
+                                <button type="submit"
+                                        class="comment-submit">
+
+                                    <span>
+                                        💬
+                                    </span>
+
+                                    Gửi bình luận
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="comment-login-box">
+
+                        <div class="login-icon">
+                            🔐
+                        </div>
+
+                        <div class="login-text">
+
+                            <strong>
+                                Đăng nhập để bình luận
+                            </strong>
+
+                            <span>
+                                Hãy đăng nhập để chia sẻ cảm nhận về bộ phim.
+                            </span>
+
+                        </div>
+
+                        <a asp-controller="Account"
+                           asp-action="Login"
+                           class="login-button">
+
+                            Đăng nhập
+
+                        </a>
+
+                    </div>
+                }
+
+
+                <!-- =========================
+                     DANH SÁCH BÌNH LUẬN
+                ========================== -->
+                @if (ViewBag.Comments != null &&
+                                     ViewBag.Comments.Count > 0)
+                {
+                    <div class="comment-list">
+
+                        @foreach (var comment in ViewBag.Comments)
+                        {
+                            <div class="comment-item">
+
+                                <div class="comment-avatar">
+                                    👤
+                                </div>
+
+                                <div class="comment-content">
+
+                                    <div class="comment-header">
+
+                                        <strong class="comment-username">
+                                            @comment.User?.Username
+                                        </strong>
+
+                                        <span class="comment-time">
+                                            @comment.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                                        </span>
+
+                                    </div>
+
+                                    <p class="comment-text">
+                                        @comment.Content
+                                    </p>
+
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="no-comments">
+
+                        <div class="no-comments-icon">
+                            💬
+                        </div>
+
+                        <strong>
+                            Chưa có bình luận nào
+                        </strong>
+
+                        <span>
+                            Hãy là người đầu tiên chia sẻ cảm nhận!
+                        </span>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CSS RIÊNG
+========================= -->
+
+<style>
+
+    /* ===== NÚT THÔNG TIN ===== */
+
+    .movie-info-button {
+    display: inline-block !important;
+    padding: 10px 18px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    }
+
+    .movie-info-button:hover {
+    background: #6d28d9 !important;
+    color: white !important;
+    text-decoration: none !important;
+    }
+
+
+    /* ===== 5 SAO ===== */
+
+    .rating-stars {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 0;
+    }
+
+    .rating-stars .rating-star {
+    all: unset !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #facc15 !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 32px !important;
+    line-height: 1;
+    width: auto !important;
+    height: auto !important;
+    }
+
+    .rating-stars .rating-star span {
+    color: #facc15 !important;
+    font-size: 32px !important;
+    line-height: 1;
+    }
+
+    .rating-stars .rating-star:hover {
+    transform: scale(1.2);
+    }
+
+
+    /* ===== TRANG CHỦ ===== */
+
+    .home-button {
+    display: inline-block !important;
+    margin-top: 12px;
+    padding: 10px 20px !important;
+    background: #7c3aed !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 8px !important;
+    transition: .2s;
+    }
+
+    .home-button:hover {
+    background: #6d28d9 !important;
+    color: white !important;
+    transform: translateY(-1px);
+    }
+
+
+    /* ========================================
+    BÌNH LUẬN
+    ======================================== */
+
+    .comments-section {
+    width: 100%;
+    margin-top: 45px;
+    padding-bottom: 40px;
+    }
+
+
+    .comments-title {
+    margin-bottom: 25px;
+    }
+
+    .comments-title > span {
+    display: block;
+    margin-bottom: 5px;
+    color: #8b5cf6;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    }
+
+    .comments-title h2 {
+    margin: 0;
+    color: white;
+    font-size: 28px;
+    }
+
+
+    /* ===== KHUNG VIẾT ===== */
+
+    .comment-box {
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    padding: 24px !important;
+        background: linear-gradient(145deg, #191919, #111111 ) !important;
+        border: 1px solid #303030 !important;
+        border-radius: 18px !important;
+        box-shadow: 0 10px 35px rgba(0,0,0,.3);
+    }
+
+
+    /* ===== TIÊU ĐỀ VIẾT ===== */
+
+    .comment-title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .comment-title-icon {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 14px;
+        background: linear-gradient( 135deg, #6c63ff, #a855f7 );
+        font-size: 23px;
+    }
+
+    .comment-title h3 {
+        margin: 0;
+        color: white;
+        font-size: 20px;
+    }
+
+    .comment-title p {
+        margin: 4px 0 0;
+        color: #888;
+        font-size: 13px;
+    }
+
+
+    /* ===== Ô NHẬP ===== */
+
+    .comment-input-wrap {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px;
+        background: #222 !important;
+        border: 1px solid #383838 !important;
+        border-radius: 14px !important;
+    }
+
+        .comment-input-wrap:focus-within {
+            border-color: #7c3aed !important;
+            box-shadow: 0 0 0 3px rgba(124,58,237,.15);
+        }
+
+
+    /* ===== AVATAR ===== */
+
+    .comment-user-icon {
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #333;
+        font-size: 20px;
+    }
+
+
+    /* ===== TEXTAREA ===== */
+
+    .comment-input-wrap textarea {
+        display: block !important;
+        flex: 1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 130px !important;
+        min-height: 130px !important;
+        margin: 0 !important;
+        padding: 5px !important;
+        box-sizing: border-box !important;
+        resize: vertical;
+        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        color: white !important;
+        font-family: inherit;
+        font-size: 15px !important;
+        line-height: 1.6;
+    }
+
+        .comment-input-wrap textarea::placeholder {
+            color: #777 !important;
+        }
+
+
+    /* ===== DÒNG NÚT ===== */
+
+    .comment-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .comment-hint {
+        color: #777;
+        font-size: 13px;
+    }
+
+
+    /* ===== NÚT GỬI ===== */
+
+    .comment-submit {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 180px !important;
+        height: 46px !important;
+        padding: 0 22px !important;
+        border: none !important;
+        border-radius: 12px !important;
+        background: linear-gradient( 135deg, #6c63ff, #a855f7 ) !important;
+        color: white !important;
+        font-family: inherit;
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+        .comment-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(108,99,255,.35);
+        }
+
+
+    /* ========================================
+           ĐĂNG NHẬP
+        ======================================== */
+
+    .comment-login-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+        margin-bottom: 25px;
+        background: #171717;
+        border: 1px solid #303030;
+        border-radius: 15px;
+    }
+
+    .login-icon {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: 12px;
+        background: #292929;
+        font-size: 20px;
+    }
+
+    .login-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+        .login-text strong {
+            color: white;
+        }
+
+        .login-text span {
+            color: #888;
+            font-size: 13px;
+        }
+
+    .login-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 20px;
+        background: #7c3aed !important;
+        color: white !important;
+        border-radius: 10px;
+        text-decoration: none !important;
+        font-weight: 700;
+    }
+
+
+    /* ========================================
+           DANH SÁCH COMMENT
+        ======================================== */
+
+    .comment-list {
+        width: 100%;
+    }
+
+    .comment-item {
+        display: flex;
+        gap: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 13px;
+        padding: 18px;
+        background: #171717;
+        border: 1px solid #2d2d2d;
+        border-radius: 14px;
+    }
+
+        .comment-item .comment-avatar {
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #303030;
+            font-size: 20px;
+        }
+
+    .comment-content {
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .comment-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 7px;
+    }
+
+    .comment-username {
+        color: white;
+        font-size: 15px;
+    }
+
+    .comment-time {
+        color: #777;
+        font-size: 12px;
+    }
+
+    .comment-text {
+        margin: 8px 0 0 0;
+        padding: 0;
+        text-align: left;
+        line-height: 1.6;
+        color: #e5e7eb;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    /* ===== CHƯA CÓ COMMENT ===== */
+
+    .no-comments {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 35px;
+        background: #171717;
+        border: 1px dashed #3a3a3a;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .no-comments-icon {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .no-comments strong {
+        color: white;
+        font-size: 15px;
+    }
+
+    .no-comments span {
+        color: #777;
+        font-size: 13px;
+    }
+
+
+    /* ========================================
+           MOBILE
+        ======================================== */
+
+    @@media (max-width: 600px) {
+
+        .comment-box {
+            padding: 16px !important;
+        }
+
+        .comment-bottom {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .comment-hint {
+            display: none;
+        }
+
+        .comment-submit {
+            width: 100% !important;
+        }
+
+        .comment-login-box {
+            flex-wrap: wrap;
+        }
+
+        .login-text {
+            min-width: 150px;
+        }
+
+        .login-button {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .comment-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px 24px;
+        }
+
+        .comment-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 3px;
+        }
+    }
+
+</style>
+<style>
+    /* ===== SỬA VỊ TRÍ NỘI DUNG BÌNH LUẬN ===== */
+
+    .comment-item {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+        padding: 20px 24px !important;
+    }
+
+    .comment-content {
+        flex: 1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        display: block !important;
+        text-align: left !important;
+        align-self: flex-start !important;
+    }
+
+    .comment-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 10px !important;
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .comment-username {
+        text-align: left !important;
+    }
+
+    .comment-time {
+        text-align: left !important;
+    }
+
+    .comment-text {
+        display: block !important;
+        width: 100% !important;
+        margin: 8px 0 0 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+        line-height: 1.6 !important;
+        color: #e5e7eb !important;
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
+        align-self: flex-start !important;
+    }
+</style>

@@ -1,0 +1,188 @@
+﻿@model MovieHub.Models.Movie
+
+@{
+    ViewData["Title"] = "Thêm phim";
+}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-body p-4">
+
+                    <h2 class="mb-4">
+                        ➕ Thêm phim mới
+                    </h2>
+
+                    <form method="post"
+                          asp-controller="AdminMovies"
+                          asp-action="Create"
+                          enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+
+                        <!-- TÊN PHIM -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Tên phim
+                            </label>
+
+                            <input asp-for="Title"
+                                   class="form-control"
+                                   placeholder="Nhập tên phim"
+                                   required />
+
+                        </div>
+
+
+                        <!-- MÔ TẢ -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Mô tả
+                            </label>
+
+                            <textarea asp-for="Description"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Nhập mô tả phim"></textarea>
+
+                        </div>
+
+
+                        <!-- ẢNH BÌA -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                🖼️ Ảnh bìa
+                            </label>
+
+                            <input type="file"
+                                   name="posterFile"
+                                   class="form-control"
+                                   accept="image/*" />
+
+                            <div class="form-text">
+                                Chọn ảnh JPG, JPEG, PNG hoặc WEBP.
+                            </div>
+
+                        </div>
+
+
+                        <!-- LINK POSTER DỰ PHÒNG -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Hoặc nhập Link Poster
+                            </label>
+
+                            <input asp-for="PosterUrl"
+                                   class="form-control"
+                                   placeholder="https://..." />
+
+                        </div>
+
+
+                        <!-- NĂM + THỜI LƯỢNG -->
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Năm phát hành
+                                    </label>
+
+                                    <input asp-for="ReleaseYear"
+                                           type="number"
+                                           class="form-control"
+                                           min="1900"
+                                           max="2100"
+                                           required />
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Thời lượng (phút)
+                                    </label>
+
+                                    <input asp-for="Duration"
+                                           type="number"
+                                           class="form-control"
+                                           min="1"
+                                           required />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- THỂ LOẠI -->
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Thể loại
+                            </label>
+
+                            <select asp-for="CategoryId"
+                                    class="form-select"
+                                    required>
+
+                                <option value="">
+                                    -- Chọn thể loại --
+                                </option>
+
+                                @foreach (var category in ViewBag.Categories)
+                                {
+                                    <option value="@category.Id">
+                                        @category.Name
+                                    </option>
+                                }
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                ➕ Thêm phim
+                            </button>
+
+                            <a asp-controller="AdminMovies"
+                               asp-action="Index"
+                               class="btn btn-secondary">
+                                Hủy
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

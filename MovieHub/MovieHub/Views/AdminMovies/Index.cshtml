@@ -1,0 +1,126 @@
+﻿@model IEnumerable<MovieHub.Models.Movie>
+
+@{
+    ViewData["Title"] = "Quản lý phim";
+}
+
+<div class="container py-5">
+
+    ```
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h1>
+            🎬 Quản lý phim
+        </h1>
+        <a asp-controller="AdminMovies"
+           asp-action="Create"
+           class="btn btn-primary me-2">
+            ➕ Thêm phim
+        </a>
+        <a asp-controller="Admin"
+           asp-action="Index"
+           class="btn btn-secondary">
+            ← Quay lại quản trị
+        </a>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Poster</th>
+                            <th>Tên phim</th>
+                            <th>Thể loại</th>
+                            <th>Năm</th>
+                            <th>Thời lượng</th>
+                            <th>Thao tác</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var movie in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @movie.Id
+                                </td>
+
+                                <td>
+                                    @if (!string.IsNullOrEmpty(movie.PosterUrl))
+                                    {
+                                        <img src="@movie.PosterUrl"
+                                             alt="@movie.Title"
+                                             style="width:60px;height:90px;object-fit:cover;" />
+                                    }
+                                </td>
+
+                                <td>
+                                    <strong>
+                                        @movie.Title
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    @movie.Category?.Name
+                                </td>
+
+                                <td>
+                                    @movie.ReleaseYear
+                                </td>
+
+                                <td>
+                                    @movie.Duration phút
+                                </td>
+                                <td>
+
+                                    <a asp-controller="AdminMovies"
+                                       asp-action="Edit"
+                                       asp-route-id="@movie.Id"
+                                       class="btn btn-warning btn-sm">
+                                        ✏️ Sửa
+                                    </a>
+
+                                    <form asp-controller="AdminMovies"
+                                          asp-action="Delete"
+                                          asp-route-id="@movie.Id"
+                                          method="post"
+                                          class="d-inline"
+                                          onsubmit="return confirm('Bạn có chắc muốn xóa phim này không?');">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm">
+                                            🗑️ Xóa
+                                        </button>
+
+                                    </form>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+    ```
+
+</div>

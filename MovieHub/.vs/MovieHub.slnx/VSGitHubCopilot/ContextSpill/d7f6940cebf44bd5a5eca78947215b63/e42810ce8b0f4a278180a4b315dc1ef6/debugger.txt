@@ -1,0 +1,200 @@
+﻿## PROCESSES
+Currently debugging:
+- MovieHub.exe (PID: 33332)
+
+## EXCEPTION
+Exception Type: Microsoft.EntityFrameworkCore.DbUpdateException
+Exception Message: An error occurred while saving the entity changes. See the inner exception for details.
+Inner Exceptions:
+1- Microsoft.Data.SqlClient.SqlException:The UPDATE statement conflicted with the FOREIGN KEY constraint "FK_Movies_Categories_CategoryId". The conflict occurred in database "MovieHubDB", table "dbo.Categories", column 'Id'.
+This exception was originally thrown at this call stack:
+[1] Microsoft.Data.SqlClient.SqlConnection.OnError(Microsoft.Data.SqlClient.SqlException, bool, System.Action<System.Action>)
+[2] Microsoft.Data.SqlClient.SqlInternalConnection.OnError(Microsoft.Data.SqlClient.SqlException, bool, System.Action<System.Action>)
+[3] Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(Microsoft.Data.SqlClient.TdsParserStateObject, Microsoft.Data.SqlClient.SqlCommand, bool, bool)
+[4] Microsoft.Data.SqlClient.TdsParser.TryRun(Microsoft.Data.SqlClient.RunBehavior, Microsoft.Data.SqlClient.SqlCommand, Microsoft.Data.SqlClient.SqlDataReader, Microsoft.Data.SqlClient.BulkCopySimpleResultSet, Microsoft.Data.SqlClient.TdsParserStateObject, out bool)
+[5] Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(out bool)
+[6] Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(bool, out bool)
+[7] Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(System.Threading.Tasks.Task, object)
+[8] Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(int, Microsoft.EntityFrameworkCore.Storage.RelationalDataReader, System.Threading.CancellationToken)
+[9] Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(Microsoft.EntityFrameworkCore.Storage.RelationalDataReader, System.Threading.CancellationToken)
+The callstack context, if included, corresponds to the thread where this exception occurred. There is no need to identify this thread by other means.
+The top most frame in the callstack context should correspond to the place the exception message was thrown from. Code may or may not have been provided for it but can be requested.
+
+## CALLSTACK
+Thread ID: 21524
+[1] [External Code]
+[14] [Exception] MovieHub.dll!MovieHub.Controllers.AdminMoviesController.Edit
+This is the current user focused stack frame. The provided locals context corresponds to this stack frame, but you may evaluate expressions and retrieve code for any frame.
+Code for the stack frame:
+```csharp MovieHub\MovieHub\Controllers\AdminMoviesController.cs
+212:         [HttpPost]
+213:         [ValidateAntiForgeryToken]
+214:         public async Task<IActionResult> Edit(
+215:     int id,
+216:     Movie movie,
+217:     IFormFile? posterFile,
+218:     int[]? categoryIds)
+219:         {
+220:             var username = HttpContext.Session.GetString("Username");
+221: 
+222:             if (string.IsNullOrEmpty(username))
+223:             {
+224:                 return RedirectToAction("Login", "Account");
+225:             }
+226: 
+227:             var isAdmin = HttpContext.Session.GetInt32("IsAdmin");
+228: 
+229:             if (isAdmin != 1)
+230:             {
+231:                 return RedirectToAction("Index", "Home");
+232:             }
+233: 
+234:             if (id != movie.Id)
+235:             {
+236:                 return NotFound();
+237:             }
+238: 
+239:             var existingMovie = await _context.Movies
+240:                 .FirstOrDefaultAsync(m => m.Id == id);
+241: 
+242:             if (existingMovie == null)
+243:             {
+244:                 return NotFound();
+245:             }
+246: 
+247:             if (!ModelState.IsValid)
+248:             {
+249:                 ViewBag.Categories = await _context.Categories
+250:                     .OrderBy(c => c.Name)
+251:                     .ToListAsync();
+252: 
+253:                 return View(movie);
+254:             }
+255: 
+256:             // Upload ảnh mới
+257:             if (posterFile != null && posterFile.Length > 0)
+258:             {
+259:                 var allowedExtensions = new[]
+260:                 {
+261:             ".jpg",
+262:             ".jpeg",
+263:             ".png",
+264:             ".webp"
+265:         };
+266: 
+267:                 var extension = Path.GetExtension(posterFile.FileName)
+268:                     .ToLowerInvariant();
+269: 
+270:                 if (!allowedExtensions.Contains(extension))
+271:                 {
+272:                     ViewBag.Error = "Chỉ được chọn JPG, JPEG, PNG hoặc WEBP.";
+273: 
+274:                     ViewBag.Categories = await _context.Categories
+275:                         .OrderBy(c => c.Name)
+276:                         .ToListAsync();
+277: 
+278:                     return View(movie);
+279:                 }
+280: 
+281:                 if (posterFile.Length > 5 * 1024 * 1024)
+282:                 {
+283:                     ViewBag.Error = "Ảnh không được vượt quá 5MB.";
+284: 
+285:                     ViewBag.Categories = await _context.Categories
+286:                         .OrderBy(c => c.Name)
+287:                         .ToListAsync();
+288: 
+289:                     return View(movie);
+290:                 }
+291: 
+292:                 var uploadsFolder = Path.Combine(
+293:                     Directory.GetCurrentDirectory(),
+294:                     "wwwroot",
+295:                     "images",
+296:                     "movies");
+297: 
+298:                 Directory.CreateDirectory(uploadsFolder);
+299: 
+300:                 var fileName = $"{Guid.NewGuid():N}{extension}";
+301: 
+302:                 var filePath = Path.Combine(
+303:                     uploadsFolder,
+304:                     fileName);
+305: 
+306:                 using (var stream = new FileStream(
+307:                     filePath,
+308:                     FileMode.Create))
+309:                 {
+310:                     await posterFile.CopyToAsync(stream);
+311:                 }
+312: 
+313:                 existingMovie.PosterUrl =
+314:                     $"/images/movies/{fileName}";
+315:             }
+316:             else
+317:             {
+318:                 // Nếu không chọn ảnh mới thì giữ ảnh cũ.
+319:                 // Nếu người dùng nhập Link Poster mới thì dùng link đó.
+320:                 if (!string.IsNullOrWhiteSpace(movie.PosterUrl))
+321:                 {
+322:                     existingMovie.PosterUrl = movie.PosterUrl;
+323:                 }
+324:             }
+325: 
+326: 
+327:             existingMovie.Title = movie.Title;
+328:             existingMovie.Description = movie.Description;
+329:             existingMovie.ReleaseYear = movie.ReleaseYear;
+330:             existingMovie.Duration = movie.Duration;
+331: 
+332:             // Lấy danh sách thể loại đã chọn
+333:             var selectedCategoryIds = (categoryIds ?? Array.Empty<int>())
+334:                 .Distinct()
+335:                 .ToList();
+336: 
+337:             if (!selectedCategoryIds.Any())
+338:             {
+339:                 ViewBag.Error = "Vui lòng chọn ít nhất một thể loại.";
+340: 
+341:                 ViewBag.Categories = await _context.Categories
+342:                     .OrderBy(c => c.Name)
+343:                     .ToListAsync();
+344: 
+345:                 return View(movie);
+346:             }
+347: 
+348:             // Giữ CategoryId cũ để tương thích database
+349:             existingMovie.CategoryId = selectedCategoryIds.First();
+350: 
+351:             await _context.SaveChangesAsync();
+352: 
+353:             // Xóa các thể loại cũ
+354:             var oldCategories = await _context.MovieCategories
+355:                 .Where(mc => mc.MovieId == existingMovie.Id)
+356:                 .ToListAsync();
+357: 
+358:             _context.MovieCategories.RemoveRange(oldCategories);
+359: 
+360:             // Thêm các thể loại mới
+361:             foreach (var categoryId in selectedCategoryIds)
+362:             {
+363:                 _context.MovieCategories.Add(new MovieCategory
+364:                 {
+365:                     MovieId = existingMovie.Id,
+366:                     CategoryId = categoryId
+367:                 });
+368:             }
+369: 
+370:             await _context.SaveChangesAsync();
+371: 
+372:             return RedirectToAction(nameof(Index));
+373:         }
+```
+Current statement: line 331
+[15] [External Code]
+
+## LOCALS
+Variable: 'this' of type 'MovieHub.Controllers.AdminMoviesController' is a complex object with child properties and has value: {MovieHub.Controllers.AdminMoviesController}
+Variable: 'movie' of type 'MovieHub.Models.Movie' is a complex object with child properties and has value: {MovieHub.Models.Movie}
+Variable: 'isAdmin' of type 'int?' has value: 1
+

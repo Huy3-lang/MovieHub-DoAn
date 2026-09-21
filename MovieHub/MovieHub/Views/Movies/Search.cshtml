@@ -1,0 +1,178 @@
+﻿@model IEnumerable<MovieHub.Models.Movie>
+
+@{
+    ViewData["Title"] = "Tìm kiếm phim";
+}
+
+<div class="container py-5">
+
+    <!-- TIÊU ĐỀ -->
+    <div class="section-title">
+
+        <div>
+            <span class="section-small-title">
+                MOVIEHUB
+            </span>
+
+            <h2>
+                🔍 Tìm kiếm phim
+            </h2>
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="view-all">
+            ← Trang chủ
+        </a>
+
+    </div>
+
+
+    <!-- TỪ KHÓA -->
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Keyword))
+    {
+        <div class="search-result-info">
+
+            Kết quả tìm kiếm cho:
+
+            <strong>
+                "@ViewBag.Keyword"
+            </strong>
+
+        </div>
+    }
+
+
+    <!-- KHÔNG CÓ KẾT QUẢ -->
+    @if (!Model.Any())
+    {
+        <div class="search-empty">
+
+            <div class="search-empty-icon">
+                🔍
+            </div>
+
+            <h3>
+                Không tìm thấy phim
+            </h3>
+
+            <p>
+                Không có bộ phim nào phù hợp với từ khóa bạn tìm kiếm.
+            </p>
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-danger">
+                🏠 Về trang chủ
+            </a>
+
+        </div>
+    }
+    else
+    {
+        <!-- SỐ LƯỢNG -->
+        <div class="search-count">
+
+            Tìm thấy
+            <strong>@Model.Count()</strong>
+            bộ phim
+
+        </div>
+
+
+        <!-- DANH SÁCH PHIM -->
+        <div class="row g-4">
+
+            @foreach (var movie in Model)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+
+                    <div class="movie-card">
+
+                        <!-- POSTER -->
+                        <div class="movie-poster-wrapper">
+
+                            <img src="@movie.PosterUrl"
+                                 class="movie-poster"
+                                 alt="@movie.Title" />
+
+                            <div class="movie-overlay">
+
+                                <a asp-controller="Movies"
+                                   asp-action="Details"
+                                   asp-route-id="@movie.Id"
+                                   class="play-button">
+                                    ▶
+                                </a>
+
+                            </div>
+
+                            <div class="movie-year">
+                                @movie.ReleaseYear
+                            </div>
+
+                        </div>
+
+
+                        <!-- THÔNG TIN -->
+                        <div class="movie-info">
+
+                            <h3 class="movie-title">
+                                @movie.Title
+                            </h3>
+
+                            <div class="movie-meta">
+
+                                <span>
+                                    📅 @movie.ReleaseYear
+                                </span>
+
+                                <span>
+                                    ⏱ @movie.Duration phút
+                                </span>
+
+                            </div>
+                            @{
+                                var rating = ((IEnumerable<dynamic>)ViewBag.Ratings)
+                                    .FirstOrDefault(r => r.MovieId == movie.Id);
+                            }
+
+                            @if (rating != null)
+                            {
+                                <div class="movie-rating-summary">
+                                    ⭐ @rating.Average.ToString("0.0")
+                                    <span>· @rating.Count đánh giá</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="movie-rating-summary">
+                                    ⭐ Chưa có đánh giá
+                                </div>
+                            }
+                            <div class="movie-category">
+
+                                🎭 @movie.Category?.Name
+
+                            </div>
+
+                            <a asp-controller="Movies"
+                               asp-action="Details"
+                               asp-route-id="@movie.Id"
+                               class="watch-button">
+
+                                ▶ Xem phim
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

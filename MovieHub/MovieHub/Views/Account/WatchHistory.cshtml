@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MovieHub.Models.WatchHistory>
+
+@{
+    ViewData["Title"] = "Lịch sử xem";
+}
+
+<div class="profile-page">
+
+    <div class="container py-5">
+
+        <div class="section-title mb-4">
+
+            <div>
+                <span class="section-small-title">
+                    MOVIEHUB
+                </span>
+
+                <h2>
+                    🕒 Lịch sử xem
+                </h2>
+            </div>
+
+            <a asp-controller="Account"
+               asp-action="Profile"
+               class="view-all">
+                ← Tài khoản
+            </a>
+
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="watch-history-list">
+
+                @foreach (var history in Model)
+                {
+                    <div class="watch-history-card">
+
+                        <img src="@history.Movie?.PosterUrl"
+                             alt="@history.Movie?.Title"
+                             class="watch-history-poster" />
+
+                        <div class="watch-history-info">
+
+                            <h3>
+                                @history.Movie?.Title
+                            </h3>
+
+                            <div class="watch-history-episode">
+                                📺
+                                @(history.Episode?.Title
+                                    ?? $"Tập {history.Episode?.EpisodeNumber}")
+                            </div>
+
+                            <div class="watch-history-time">
+                                🕒
+                                @history.WatchedAt.ToString("dd/MM/yyyy HH:mm")
+                            </div>
+
+                        </div>
+
+                        @if (history.Episode != null)
+                        {
+                            <a asp-controller="Movies"
+                               asp-action="Watch"
+                               asp-route-id="@history.EpisodeId"
+                               class="watch-history-button">
+                                ▶ Xem lại
+                            </a>
+                        }
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="search-empty">
+
+                <div class="search-empty-icon">
+                    🕒
+                </div>
+
+                <h3>
+                    Chưa có lịch sử xem
+                </h3>
+
+                <p>
+                    Những tập phim bạn đã xem sẽ xuất hiện ở đây.
+                </p>
+
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="btn btn-danger">
+                    🎬 Khám phá phim
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</div>

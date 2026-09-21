@@ -1,0 +1,10 @@
+# Visual Studio build files
+**/bin/
+**/obj/
+
+# Movie video files
+**/wwwroot/videos/
+
+# Other projects
+ConsoleApp1/
+ConsoleApp2/

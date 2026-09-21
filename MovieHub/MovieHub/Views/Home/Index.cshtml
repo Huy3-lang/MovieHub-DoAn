@@ -1,0 +1,453 @@
+﻿@model IEnumerable<MovieHub.Models.Movie>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+
+    var heroMovie = Model.FirstOrDefault(m =>
+        !string.IsNullOrWhiteSpace(m.PosterUrl));
+}
+
+<!-- HERO -->
+@if (heroMovie != null)
+{
+    <section class="movie-hero"
+             style="background-image: url('@heroMovie.PosterUrl');">
+
+        <div class="movie-hero-overlay">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        🎬 MOVIEHUB
+                    </span>
+
+                    <h1>
+                        @heroMovie.Title
+                    </h1>
+
+                    <p>
+                        @(string.IsNullOrWhiteSpace(heroMovie.Description)
+                            ? "Khám phá bộ phim và tận hưởng những phút giây giải trí tuyệt vời cùng MovieHub."
+                            : heroMovie.Description)
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a asp-controller="Movies"
+                           asp-action="Details"
+                           asp-route-id="@heroMovie.Id"
+                           class="btn btn-danger btn-lg">
+
+                            ▶ Xem phim
+
+                        </a>
+
+                        <a asp-controller="Movies"
+                           asp-action="Search"
+                           class="btn btn-outline-light btn-lg">
+
+                            🔍 Tìm kiếm phim
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+}
+else
+{
+    <section class="movie-hero">
+
+        <div class="movie-hero-overlay">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        🎬 MOVIEHUB
+                    </span>
+
+                    <h1>
+                        Thế giới phim<br />
+                        <span>giải trí của bạn</span>
+                    </h1>
+
+                    <p>
+                        Khám phá những bộ phim mới nhất,
+                        xem phim yêu thích và tận hưởng
+                        những phút giây giải trí tuyệt vời.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#movie-list"
+                           class="btn btn-danger btn-lg">
+
+                            ▶ Xem phim ngay
+
+                        </a>
+
+                        <a asp-controller="Movies"
+                           asp-action="Search"
+                           class="btn btn-outline-light btn-lg">
+
+                            🔍 Tìm kiếm phim
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+}
+
+<!-- MOVIE LIST -->
+
+<div class="container py-5" id="movie-list">
+
+    <div class="section-title">
+
+        <div>
+
+            <span class="section-small-title">
+                MOVIEHUB
+            </span>
+
+            <h2>
+                🔥 Phim mới
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    @if (Model.Any())
+    {
+        <div class="row g-4">
+
+            @foreach (var movie in Model)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+
+                    <div class="movie-card">
+
+                        <!-- POSTER -->
+
+                        <div class="movie-poster-wrapper">
+
+                            @if (!string.IsNullOrWhiteSpace(movie.PosterUrl))
+                            {
+                                <img src="@movie.PosterUrl"
+                                     class="movie-poster"
+                                     alt="@movie.Title" />
+                            }
+                            else
+                            {
+                                <div class="movie-poster movie-poster-empty">
+                                    🎬
+                                </div>
+                            }
+
+                            <div class="movie-overlay">
+
+                                <a asp-controller="Movies"
+                                   asp-action="Details"
+                                   asp-route-id="@movie.Id"
+                                   class="play-button">
+
+                                    ▶
+
+                                </a>
+
+                            </div>
+
+                            <div class="movie-year">
+                                @movie.ReleaseYear
+                            </div>
+
+                        </div>
+
+
+                        <!-- INFO -->
+
+                        <div class="movie-info">
+
+                            <h3 class="movie-title">
+                                @movie.Title
+                            </h3>
+
+
+                            @{
+                                var rating = ((IEnumerable<dynamic>)ViewBag.Ratings)
+                                    .FirstOrDefault(r => r.MovieId == movie.Id);
+                            }
+
+                            @if (rating != null)
+                            {
+                                <div class="movie-rating-summary">
+
+                                    ⭐ @rating.Average.ToString("0.0")
+
+                                    <span>
+                                        · @rating.Count đánh giá
+                                    </span>
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="movie-rating-summary">
+
+                                    ⭐ Chưa có đánh giá
+
+                                </div>
+                            }
+
+
+                            <div class="movie-meta">
+
+                                <span>
+                                    📅 @movie.ReleaseYear
+                                </span>
+
+                                <span>
+                                    ⏱ @movie.Duration phút
+                                </span>
+
+                            </div>
+
+
+                            <div class="movie-category">
+
+                                🎭 @movie.Category?.Name
+
+                            </div>
+
+
+                            <a asp-controller="Movies"
+                               asp-action="Details"
+                               asp-route-id="@movie.Id"
+                               class="watch-button">
+
+                                ▶ Xem phim
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="search-empty">
+
+            <div class="search-empty-icon">
+                🎬
+            </div>
+
+            <h3>
+                Chưa có phim
+            </h3>
+
+            <p>
+                Hiện tại MovieHub chưa có bộ phim nào.
+            </p>
+
+        </div>
+    }
+
+
+    <!-- PHÂN TRANG -->
+    @if (ViewBag.TotalPages != null && ViewBag.TotalPages > 1)
+    {
+        <div style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+            width: 100%;
+            flex-wrap: wrap;
+            ">
+
+            <!-- TRƯỚC -->
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   asp-route-page="@(ViewBag.CurrentPage - 1)"
+                   style="
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 85px;
+                    height: 42px;
+                    padding: 0 14px;
+                    box-sizing: border-box;
+                    background: #15151b;
+                    border: 1px solid #444;
+                    border-radius: 7px;
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    ">
+                    ← Trước
+                </a>
+            }
+            else
+            {
+                <span style="
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 85px;
+                    height: 42px;
+                    padding: 0 14px;
+                    box-sizing: border-box;
+                    background: #15151b;
+                    border: 1px solid #333;
+                    border-radius: 7px;
+                    color: #555;
+                    font-size: 14px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    ">
+                    ← Trước
+                </span>
+            }
+
+
+            <!-- SỐ TRANG -->
+            <div style="
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+                ">
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    if (i == ViewBag.CurrentPage)
+                    {
+                        <span style="
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 42px;
+                            height: 42px;
+                            box-sizing: border-box;
+                            background: #e50914;
+                            border: 1px solid #e50914;
+                            border-radius: 7px;
+                            color: #fff;
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: 700;
+                            ">
+                            @i
+                        </span>
+                    }
+                    else
+                    {
+                        <a asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-page="@i"
+                           style="
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 42px;
+                            height: 42px;
+                            box-sizing: border-box;
+                            background: #15151b;
+                            border: 1px solid #444;
+                            border-radius: 7px;
+                            color: #ccc;
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: 700;
+                            ">
+                            @i
+                        </a>
+                    }
+                }
+
+            </div>
+
+
+            <!-- SAU -->
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   asp-route-page="@(ViewBag.CurrentPage + 1)"
+                   style="
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 75px;
+                    height: 42px;
+                    padding: 0 14px;
+                    box-sizing: border-box;
+                    background: #15151b;
+                    border: 1px solid #444;
+                    border-radius: 7px;
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    ">
+                    Sau →
+                </a>
+            }
+            else
+            {
+                <span style="
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 75px;
+                    height: 42px;
+                    padding: 0 14px;
+                    box-sizing: border-box;
+                    background: #15151b;
+                    border: 1px solid #333;
+                    border-radius: 7px;
+                    color: #555;
+                    font-size: 14px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    ">
+                    Sau →
+                </span>
+            }
+
+        </div>
+    }
+
+
+</div>

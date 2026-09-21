@@ -1,0 +1,554 @@
+﻿<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/logo/moviehub-icon.png?v=12345" />
+
+```
+<title>@ViewData["Title"] - MovieHub</title>
+
+<script type="importmap"></script>
+
+<link rel="stylesheet"
+      href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+<link rel="stylesheet"
+      href="~/css/site.css"
+      asp-append-version="true" />
+
+<link rel="stylesheet"
+      href="~/MovieHub.styles.css"
+      asp-append-version="true" />
+```
+
+</head>
+
+<body>
+
+
+<!-- ==================== NAVBAR ==================== -->
+
+<nav class="movie-navbar">
+
+```
+<div class="container">
+
+    <div class="movie-navbar-inner">
+
+        <!-- LOGO -->
+        <a class="movie-logo"
+           asp-controller="Home"
+           asp-action="Index">
+
+            <span class="logo-icon">🎬</span>
+            MOVIE<span>HUB</span>
+
+        </a>
+
+
+        <!-- ==================== MENU ==================== -->
+
+        <div class="movie-menu">
+
+            <!-- TRANG CHỦ -->
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="movie-nav-link">
+
+                🏠 Trang chủ
+
+            </a>
+
+
+            <!-- PHIM LẺ -->
+            <a asp-controller="Movies"
+               asp-action="SingleMovies"
+               class="movie-nav-link">
+
+                🎬 Phim lẻ
+
+            </a>
+
+
+            <!-- PHIM BỘ -->
+            <a asp-controller="Movies"
+               asp-action="SeriesMovies"
+               class="movie-nav-link">
+
+                📺 Phim bộ
+
+            </a>
+
+
+            <!-- ==================== THỂ LOẠI ==================== -->
+
+            <div class="movie-dropdown">
+
+                <button type="button"
+                        class="movie-nav-link movie-dropdown-btn">
+
+                    🎭 Thể loại
+                    <span>⌄</span>
+
+                </button>
+
+
+                <div class="movie-dropdown-menu">
+
+                    <!-- 1. HÀNH ĐỘNG -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="1">
+
+                        🔥 Hành động
+
+                    </a>
+
+
+                    <!-- 2. HÀI -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="2">
+
+                        😂 Hài
+
+                    </a>
+
+
+                    <!-- 3. TÌNH CẢM -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="3">
+
+                        ❤️ Tình cảm
+
+                    </a>
+
+
+                    <!-- 4. HOẠT HÌNH -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="4">
+
+                        🎨 Hoạt hình
+
+                    </a>
+
+
+                    <!-- 5. KINH DỊ -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="5">
+
+                        👻 Kinh dị
+
+                    </a>
+
+
+                    <!-- 6. XUYÊN KHÔNG -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="6">
+                       
+                        🌀 Xuyên không
+
+                    </a>
+
+
+                    <!-- 7. TU TIÊN -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="7">
+
+                        ☁️ Tu tiên
+
+                    </a>
+
+
+                    <!-- 8. HUYỀN HUYỄN -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="8">
+
+                        ✨ Huyền huyễn
+
+                    </a>
+
+
+                    <!-- 9. ĐÔ THỊ -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="9">
+
+                        🏙️ Đô thị
+
+                    </a>
+
+
+                    <!-- 10. TRÙNG SINH -->
+                    <a asp-controller="Movies"
+                       asp-action="Category"
+                       asp-route-id="10">
+
+                        🔄 Trùng sinh
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================== RIGHT ==================== -->
+
+        <div class="movie-navbar-right">
+
+            <!-- SEARCH -->
+            <form asp-controller="Movies"
+                  asp-action="Search"
+                  method="get"
+                  class="movie-search">
+
+                <input type="search"
+                       name="keyword"
+                       placeholder="Tìm kiếm phim..."
+                       autocomplete="off" />
+
+                <button type="submit">
+                    🔍
+                </button>
+
+            </form>
+
+
+            <!-- ACCOUNT -->
+            @{
+                var username =
+                    Context.Session.GetString("Username");
+
+                var isAdmin =
+                    Context.Session.GetInt32("IsAdmin");
+            }
+
+
+          @if (!string.IsNullOrEmpty(username))
+{<div class="movie-user">
+
+    <!-- TÀI KHOẢN -->
+    <a asp-controller="Account"
+       asp-action="Profile"
+       class="btn btn-sm"
+       style="background:#26304a; color:white; border-radius:8px;">
+        👤 @username
+    </a>
+
+
+    <!-- QUẢN TRỊ -->
+    @if (isAdmin == 1)
+    {
+        <a asp-controller="Admin"
+           asp-action="Index"
+           class="btn btn-sm"
+           style="background:#7c3aed; color:white; border-radius:8px;">
+            ⚙️ Quản trị
+        </a>
+    }
+
+
+    <!-- ĐĂNG XUẤT -->
+    <a asp-controller="Account"
+       asp-action="Logout"
+       class="btn btn-sm"
+       style="background:#8b304b; color:white; border-radius:8px;">
+        🚪 Đăng xuất
+    </a>
+
+</div>
+}
+else
+{
+    <div class="movie-auth">
+
+        <a asp-controller="Account"
+           asp-action="Login">
+            Đăng nhập
+        </a>
+
+        <a asp-controller="Account"
+           asp-action="Register"
+           class="register-btn">
+            Đăng ký
+        </a>
+
+    </div>
+}
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</nav>
+
+<!-- ==================== NỘI DUNG TRANG ==================== -->
+
+<main role="main" class="pb-3">
+
+```
+@RenderBody()
+```
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+
+<footer class="movie-footer">
+
+```
+<div class="container">
+
+    <div class="footer-grid">
+
+        <!-- GIỚI THIỆU -->
+        <div class="footer-column">
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="footer-logo">
+
+                🎬 MOVIE<span>HUB</span>
+
+            </a>
+
+
+            <p>
+                MovieHub là website giải trí giúp bạn
+                khám phá và thưởng thức những bộ phim
+                yêu thích.
+            </p>
+
+        </div>
+
+
+        <!-- ==================== KHÁM PHÁ ==================== -->
+
+        <div class="footer-column">
+
+            <h5>
+                Khám phá
+            </h5>
+
+
+            <a asp-controller="Home"
+               asp-action="Index">
+
+                Trang chủ
+
+            </a>
+
+
+            <a asp-controller="Movies"
+               asp-action="SingleMovies">
+
+                🎬 Phim lẻ
+
+            </a>
+
+
+            <a asp-controller="Movies"
+               asp-action="SeriesMovies">
+
+                📺 Phim bộ
+
+            </a>
+
+
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="1">
+
+                🔥 Hành động
+
+            </a>
+
+        </div>
+
+
+        <!-- ==================== THỂ LOẠI ==================== -->
+
+        <div class="footer-column">
+
+            <h5>
+                Thể loại
+            </h5>
+
+
+            <!-- 1 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="1">
+
+                🔥 Hành động
+
+            </a>
+
+
+            <!-- 2 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="2">
+
+                😂 Hài
+
+            </a>
+
+
+            <!-- 3 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="3">
+
+                ❤️ Tình cảm
+
+            </a>
+
+
+            <!-- 4 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="4">
+
+                🎨 Hoạt hình
+
+            </a>
+
+
+            <!-- 5 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="5">
+
+                👻 Kinh dị
+
+            </a>
+
+
+            <!-- 6 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="6">
+
+                🌀 Xuyên không
+
+            </a>
+
+
+            <!-- 7 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="7">
+
+                ☁️ Tu tiên
+
+            </a>
+
+
+            <!-- 8 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="8">
+
+                ✨ Huyền huyễn
+
+            </a>
+
+
+            <!-- 9 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="9">
+
+                🏙️ Đô thị
+
+            </a>
+
+
+            <!-- 10 -->
+            <a asp-controller="Movies"
+               asp-action="Category"
+               asp-route-id="10">
+
+                🔄 Trùng sinh
+
+            </a>
+
+        </div>
+
+
+        <!-- ==================== MOVIEHUB ==================== -->
+
+        <div class="footer-column">
+
+            <h5>
+                MovieHub
+            </h5>
+
+
+            <p>
+                🎬 Phim chất lượng
+            </p>
+
+
+            <p>
+                ⚡ Cập nhật phim mới
+            </p>
+
+
+            <p>
+                📱 Hỗ trợ đa thiết bị
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 MovieHub. All rights reserved.
+        </span>
+
+
+        <span>
+            Made with ❤️ Nguyen Huy Thai 
+        </span>
+
+    </div>
+
+</div>
+```
+
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/js/site.js"
+        asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

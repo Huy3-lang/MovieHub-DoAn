@@ -1,0 +1,258 @@
+﻿@model MovieHub.Models.Movie
+
+@{
+    ViewData["Title"] = "Sửa phim";
+
+    var selectedCategoryIds =
+        ViewBag.SelectedCategories as IEnumerable<int>
+        ?? Enumerable.Empty<int>();
+}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow">
+
+                <div class="card-body p-4">
+
+                    <h2 class="mb-4">
+                        ✏️ Sửa phim
+                    </h2>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    <form method="post"
+                          asp-controller="AdminMovies"
+                          asp-action="Edit"
+                          enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               asp-for="Id" />
+
+                        <!-- TÊN PHIM -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Tên phim
+                            </label>
+
+                            <input asp-for="Title"
+                                   class="form-control"
+                                   required />
+
+                        </div>
+
+
+                        <!-- MÔ TẢ -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Mô tả
+                            </label>
+
+                            <textarea asp-for="Description"
+                                      class="form-control"
+                                      rows="4"></textarea>
+
+                        </div>
+
+
+                        <!-- ẢNH HIỆN TẠI -->
+                        @if (!string.IsNullOrWhiteSpace(Model.PosterUrl))
+                        {
+                            <div class="mb-3">
+
+                                <label class="form-label">
+                                    🖼️ Ảnh bìa hiện tại
+                                </label>
+
+                                <div>
+                                    <img src="@Model.PosterUrl"
+                                         alt="@Model.Title"
+                                         style="width:180px;height:260px;object-fit:cover;border-radius:8px;" />
+                                </div>
+
+                            </div>
+                        }
+
+
+                        <!-- CHỌN ẢNH MỚI -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                🖼️ Chọn ảnh mới
+                            </label>
+
+                            <input type="file"
+                                   name="posterFile"
+                                   class="form-control"
+                                   accept="image/*" />
+
+                            <div class="form-text">
+                                Chọn JPG, JPEG, PNG hoặc WEBP.
+                                Nếu không chọn ảnh mới thì ảnh hiện tại được giữ nguyên.
+                            </div>
+
+                        </div>
+
+
+                        <!-- LINK POSTER -->
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Hoặc nhập Link Poster
+                            </label>
+
+                            <input asp-for="PosterUrl"
+                                   class="form-control"
+                                   placeholder="https://..." />
+
+                        </div>
+
+
+                        <!-- NĂM + THỜI LƯỢNG -->
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Năm phát hành
+                                    </label>
+
+                                    <input asp-for="ReleaseYear"
+                                           type="number"
+                                           class="form-control"
+                                           min="1900"
+                                           max="2100"
+                                           required />
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Thời lượng (phút)
+                                    </label>
+
+                                    <input asp-for="Duration"
+                                           type="number"
+                                           class="form-control"
+                                           min="1"
+                                           required />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- THỂ LOẠI -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                🎭 Thể loại
+                            </label>
+
+                            <div class="border rounded p-3">
+
+                                <div class="row">
+
+                                    @foreach (var category in ViewBag.Categories)
+                                    {
+                                        var isSelected =
+                                            selectedCategoryIds.Contains((int)category.Id);
+
+                                        <div class="col-md-6 mb-2">
+
+                                            <label class="form-check">
+
+                                                @if (isSelected)
+                                                {
+                                                    <input type="checkbox"
+                                                           class="form-check-input"
+                                                           name="categoryIds"
+                                                           value="@category.Id"
+                                                           checked />
+                                                }
+                                                else
+                                                {
+                                                    <input type="checkbox"
+                                                           class="form-check-input"
+                                                           name="categoryIds"
+                                                           value="@category.Id" />
+                                                }
+
+                                                <span class="form-check-label">
+                                                    @category.Name
+                                                </span>
+
+                                            </label>
+
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-text mt-2">
+                                💡 Có thể chọn nhiều thể loại cho một bộ phim.
+                            </div>
+
+                            @Html.ValidationMessage(
+                                "categoryIds",
+                                "",
+                                new { @class = "text-danger" })
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                💾 Lưu thay đổi
+
+                            </button>
+
+                            <a asp-controller="AdminMovies"
+                               asp-action="Index"
+                               class="btn btn-secondary">
+
+                                Hủy
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

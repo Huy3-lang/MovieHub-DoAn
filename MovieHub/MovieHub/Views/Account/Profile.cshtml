@@ -1,0 +1,270 @@
+﻿@model MovieHub.Models.User
+
+@{
+    ViewData["Title"] = "Tài khoản";
+}
+
+<style>
+    /* Các nút chức năng */
+    .profile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .profile-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 13px 18px;
+        background: #7c3aed;
+        color: white !important;
+        text-decoration: none !important;
+        border-radius: 9px;
+        font-weight: 600;
+        transition: 0.2s ease;
+        border: none;
+    }
+
+        .profile-action:hover {
+            background: #6d28d9;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+    /* Phần dưới */
+    .profile-bottom {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .profile-home,
+    .profile-logout {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        border-radius: 9px;
+        text-decoration: none !important;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+    .profile-home {
+        background: #26304a;
+        color: white !important;
+    }
+
+        .profile-home:hover {
+            background: #34405f;
+            color: white !important;
+        }
+
+    .profile-logout {
+        background: #8b304b;
+        color: white !important;
+    }
+
+        .profile-logout:hover {
+            background: #a33a59;
+            color: white !important;
+        }
+
+    /* Quyền tài khoản */
+    .profile-role.admin {
+        color: #f59e0b;
+        font-weight: 700;
+    }
+
+    .profile-role.user {
+        color: #8b5cf6;
+        font-weight: 700;
+    }
+</style>
+
+<div class="profile-page">
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7">
+
+                <div class="profile-card">
+
+                    <div class="profile-avatar">
+                        👤
+                    </div>
+
+                    <span class="profile-label">
+                        MOVIEHUB ACCOUNT
+                    </span>
+
+                    <h1>
+                        @Model.Username
+                    </h1>
+
+                    <p class="profile-subtitle">
+                        Quản lý thông tin và tài khoản của bạn
+                    </p>
+
+
+                    <!-- THÔNG TIN -->
+
+                    <div class="profile-info">
+
+                        <div class="profile-info-row">
+
+                            <div>
+                                <span class="profile-info-label">
+                                    👤 Tên tài khoản
+                                </span>
+                            </div>
+
+                            <strong>
+                                @Model.Username
+                            </strong>
+
+                        </div>
+                        <div class="profile-info-row">
+
+                            <div>
+                                <span class="profile-info-label">
+                                    📧 Email
+                                </span>
+                            </div>
+
+                            <strong>
+                                @(string.IsNullOrWhiteSpace(Model.Email)
+                                    ? "Chưa cập nhật"
+                                    : Model.Email)
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-info-row">
+
+                            <div>
+                                <span class="profile-info-label">
+                                    🔐 Quyền tài khoản
+                                </span>
+                            </div>
+
+                            @if (Model.IsAdmin)
+                            {
+                                <span class="profile-role admin">
+                                    👑 Admin
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="profile-role user">
+                                    👤 User
+                                </span>
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="profile-actions">
+
+                        <!-- PHIM YÊU THÍCH -->
+                        <a asp-controller="Account"
+                           asp-action="Favorites"
+                           class="profile-action favorite">
+
+                            ❤️
+                            <span>
+                                Phim yêu thích
+                            </span>
+
+                        </a>
+
+
+                        <!-- LỊCH SỬ XEM -->
+                        <a asp-controller="Account"
+                           asp-action="WatchHistory"
+                           class="profile-action history">
+
+                            🕒
+                            <span>
+                                Lịch sử xem
+                            </span>
+
+                        </a>
+
+
+                        <!-- ĐỔI MẬT KHẨU -->
+                        <a asp-controller="Account"
+                           asp-action="ChangePassword"
+                           class="profile-action password">
+
+                            🔐
+                            <span>
+                                Đổi mật khẩu
+                            </span>
+
+                        </a>
+
+
+                        <!-- QUẢN TRỊ -->
+                        @if (Model.IsAdmin)
+                        {
+                            <a asp-controller="Admin"
+                               asp-action="Index"
+                               class="profile-action admin">
+
+                                ⚙️
+                                <span>
+                                    Quản trị
+                                </span>
+
+                            </a>
+                        }
+
+                    </div>
+
+
+                    <!-- FOOTER ACTION -->
+
+                    <div class="profile-bottom">
+
+                        <!-- VỀ MOVIEHUB -->
+                        <a asp-controller="Home"
+                           asp-action="Index"
+                           class="profile-home">
+
+                            ← Quay về MovieHub
+
+                        </a>
+
+
+                        <!-- ĐĂNG XUẤT -->
+                        <a asp-controller="Account"
+                           asp-action="Logout"
+                           class="profile-logout">
+
+                            🚪 Đăng xuất
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

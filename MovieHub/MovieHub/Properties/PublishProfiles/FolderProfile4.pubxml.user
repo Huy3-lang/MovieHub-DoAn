@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\MovieHub</_PublishTargetUrl>
+    <History>True|2026-08-24T09:49:54.6691282Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>09/09/2026 13:12:35</publishTime>
+    </File>
+    <File Include="wwwroot/images/anh.png">
+      <publishTime>09/09/2026 13:00:35</publishTime>
+    </File>
+    <File Include="wwwroot/images/movies/anh.png">
+      <publishTime>09/09/2026 13:00:35</publishTime>
+    </File>
+    <File Include="wwwroot/logo/anh.png">
+      <publishTime>09/09/2026 13:00:35</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

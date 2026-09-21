@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|c:\\users\\acer\\documents\\github\\gitpractice\\quanlysinhvien\\quanlysinhvien\\quanlysinhvien.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|solutionrelative:quanlysinhvien\\quanlysinhvien.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|c:\\users\\acer\\documents\\github\\gitpractice\\quanlysinhvien\\quanlysinhvien\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|solutionrelative:quanlysinhvien\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|c:\\users\\acer\\documents\\github\\gitpractice\\quanlysinhvien\\quanlysinhvien\\controllers\\sinhviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|solutionrelative:quanlysinhvien\\controllers\\sinhviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|c:\\users\\acer\\documents\\github\\gitpractice\\quanlysinhvien\\quanlysinhvien\\data\\quanlysinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|solutionrelative:quanlysinhvien\\data\\quanlysinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|c:\\users\\acer\\documents\\github\\gitpractice\\quanlysinhvien\\quanlysinhvien\\models\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|solutionrelative:quanlysinhvien\\models\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Migrations\\20260821120517_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLySinhVien\\Migrations\\20260821120517_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|c:\\users\\acer\\documents\\github\\gitpractice\\quanlysinhvien\\quanlysinhvien\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{40154BD1-A0E5-4B31-B5C1-8595C7929D32}|QuanLySinhVien\\QuanLySinhVien.csproj|solutionrelative:quanlysinhvien\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SinhVien.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Models\\SinhVien.cs",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\Models\\SinhVien.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Models\\SinhVien.cs",
+              "RelativeToolTip": "QuanLySinhVien\\Models\\SinhVien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T11:38:13.071Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuanLySinhVien",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\QuanLySinhVien.csproj",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\QuanLySinhVien.csproj",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\QuanLySinhVien.csproj",
+              "RelativeToolTip": "QuanLySinhVien\\QuanLySinhVien.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-21T12:25:06.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SinhVienController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Controllers\\SinhVienController.cs",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\Controllers\\SinhVienController.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Controllers\\SinhVienController.cs",
+              "RelativeToolTip": "QuanLySinhVien\\Controllers\\SinhVienController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAqwBcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T12:08:44.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20260821120517_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Migrations\\20260821120517_InitialCreate.cs",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\Migrations\\20260821120517_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Migrations\\20260821120517_InitialCreate.cs",
+              "RelativeToolTip": "QuanLySinhVien\\Migrations\\20260821120517_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T12:05:17.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Program.cs",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\Program.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Program.cs",
+              "RelativeToolTip": "QuanLySinhVien\\Program.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T11:55:49.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\appsettings.json",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\appsettings.json",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\appsettings.json",
+              "RelativeToolTip": "QuanLySinhVien\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-21T11:55:00.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuanLySinhVien.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Data\\QuanLySinhVien.cs",
+              "RelativeDocumentMoniker": "QuanLySinhVien\\Data\\QuanLySinhVien.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\GitPractice\\QuanLySinhVien\\QuanLySinhVien\\Data\\QuanLySinhVien.cs",
+              "RelativeToolTip": "QuanLySinhVien\\Data\\QuanLySinhVien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-21T11:46:49.372Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

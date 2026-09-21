@@ -1,0 +1,324 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+}
+<style>
+    .login-page {
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    padding: 70px 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at 20% 20%, rgba(229, 9, 20, 0.18), transparent 35%), radial-gradient(circle at 80% 80%, rgba(37, 140, 251, 0.10), transparent 35%), #08080b;
+    color: white;
+    }
+
+    .login-background {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    }
+
+    .login-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    }
+
+    .login-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 42px;
+    background: #15151b;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.65);
+    }
+
+    .login-logo {
+    width: 78px;
+    height: 78px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(229,9,20,0.15);
+    border: 1px solid rgba(229,9,20,0.3);
+    font-size: 36px;
+    }
+
+    .login-header {
+    text-align: center;
+    margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+    margin: 0 0 8px;
+    color: white;
+    font-size: 30px;
+    font-weight: 800;
+    }
+
+    .login-header h1 span {
+    color: #e50914;
+    }
+
+    .login-header p {
+    margin: 0;
+    color: #999;
+    font-size: 14px;
+    }
+
+    .login-error {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background: rgba(229,9,20,0.12);
+    border: 1px solid rgba(229,9,20,0.35);
+    border-radius: 8px;
+    color: #ff8585;
+    }
+
+    .login-field {
+    margin-bottom: 20px;
+    }
+
+    .login-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ddd;
+    font-size: 14px;
+    font-weight: 600;
+    }
+
+    .input-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    background: #0f0f14;
+    border: 1px solid #383842;
+    border-radius: 9px;
+    overflow: hidden;
+    }
+
+    .input-icon {
+    width: 45px;
+    text-align: center;
+    color: #888;
+    flex-shrink: 0;
+    }
+
+    .input-box input {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    }
+
+    .input-box:focus-within {
+    border-color: #e50914;
+    box-shadow: 0 0 0 3px rgba(229,9,20,0.12);
+    }
+
+    .input-box input::placeholder {
+    color: #666;
+    }
+    .login-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 52px;
+        padding: 0 18px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 9px;
+        background: #e50914;
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .login-button:hover {
+            background: #ff1b26;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(229,9,20,0.25);
+        }
+
+    .login-register-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 25px;
+        padding-top: 22px;
+        border-top: 1px solid #2d2d35;
+        color: #999;
+        font-size: 14px;
+    }
+
+    .register-button {
+        color: #ff4b55;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+        .register-button:hover {
+            color: white;
+        }
+
+    .login-home-button {
+        display: block;
+        width: fit-content;
+        margin: 20px auto 0;
+        color: #999;
+        text-decoration: none;
+        font-size: 13px;
+    }
+
+        .login-home-button:hover {
+            color: white;
+        }
+
+    @@media (max-width: 576px) {
+        .login-page {
+            padding: 40px 15px;
+        }
+
+        .login-card {
+            padding: 30px 22px;
+        }
+
+        .login-header h1 {
+            font-size: 25px;
+        }
+    }
+</style>
+<div class="login-page">
+
+    <div class="login-background"></div>
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <!-- LOGO -->
+            <div class="login-logo">
+                🎬
+            </div>
+
+            <!-- TIÊU ĐỀ -->
+            <div class="login-header">
+                <h1>
+                    Chào mừng <span>trở lại!</span>
+                </h1>
+
+                <p>
+                    Đăng nhập để tiếp tục khám phá MovieHub
+                </p>
+            </div>
+
+            <!-- THÔNG BÁO LỖI -->
+            @if (ViewBag.Error != null)
+            {
+                <div class="login-error">
+                    ⚠️ @ViewBag.Error
+                </div>
+            }
+
+            <!-- FORM -->
+            <form method="post"
+                  asp-controller="Account"
+                  asp-action="Login">
+
+                @Html.AntiForgeryToken()
+
+                <!-- EMAIL -->
+                <div class="login-field">
+
+                    <label>📧 Email</label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">✉</span>
+
+                        <input type="email"
+                               name="email"
+                               placeholder="Nhập email của bạn"
+                               autocomplete="email"
+                               required />
+
+                    </div>
+
+                </div>
+
+                <!-- MẬT KHẨU -->
+                <div class="login-field">
+
+                    <label>🔐 Mật khẩu</label>
+
+                    <div class="input-box">
+
+                        <span class="input-icon">🔒</span>
+
+                        <input type="password"
+                               name="password"
+                               placeholder="Nhập mật khẩu"
+                               autocomplete="current-password"
+                               required />
+
+                    </div>
+
+                </div>
+
+                <!-- NÚT ĐĂNG NHẬP -->
+                <button type="submit" class="login-button">
+                    <span>Đăng nhập</span>
+                    <span>→</span>
+                </button>
+
+            </form>
+
+            <!-- ĐĂNG KÝ -->
+            <div class="login-register-box">
+
+                <span>Chưa có tài khoản?</span>
+
+                <a asp-controller="Account"
+                   asp-action="Register"
+                   class="register-button">
+
+                    ✨ Đăng ký ngay
+
+                </a>
+
+            </div>
+
+            <!-- QUAY VỀ -->
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="login-home-button">
+
+                ← Quay về MovieHub
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

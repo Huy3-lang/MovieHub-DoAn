@@ -1,0 +1,218 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\movies\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\movies\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\movies\\watch.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\movies\\watch.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\migrations\\20260908185655_addmoviemultiplecategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\migrations\\20260908185655_addmoviemultiplecategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\controllers\\adminmoviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\controllers\\adminmoviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|c:\\users\\acer\\onedrive\\documents\\github\\gitpractice\\moviehub\\moviehub\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{14398B17-A3AC-9A04-60E0-570D2C5A3DB1}|MovieHub\\MovieHub.csproj|solutionrelative:moviehub\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 277,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "MovieHub\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "MovieHub\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAALUbAAAAAAAAAAAQwNQbAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-08T19:14:17.472Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Movies\\Details.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Movies\\Details.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Movies\\Details.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Movies\\Details.cshtml",
+              "ViewState": "AgIAAPwDAAAAAAAAAAAYwDwEAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-09T08:14:23.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Admin\\Index.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAADIBAAAAAAAAAAAgwFYBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-09T07:20:33.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAKYBAAAAAAAAAAAlwMQBAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T19:26:54.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAN8BAAAAAAAAAAAYwPsBAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T19:11:35.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Account\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Account\\Profile.cshtml",
+              "ViewState": "AgIAANkAAAAAAAAAAAAYwA0BAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-09T08:03:43.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Watch.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Movies\\Watch.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Movies\\Watch.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Movies\\Watch.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Movies\\Watch.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-09T08:51:47.681Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "20260908185655_AddMovieMultipleCategories.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Migrations\\20260908185655_AddMovieMultipleCategories.cs",
+              "RelativeDocumentMoniker": "MovieHub\\Migrations\\20260908185655_AddMovieMultipleCategories.cs",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Migrations\\20260908185655_AddMovieMultipleCategories.cs",
+              "RelativeToolTip": "MovieHub\\Migrations\\20260908185655_AddMovieMultipleCategories.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T18:59:56.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AdminMoviesController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Controllers\\AdminMoviesController.cs",
+              "RelativeDocumentMoniker": "MovieHub\\Controllers\\AdminMoviesController.cs",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Controllers\\AdminMoviesController.cs",
+              "RelativeToolTip": "MovieHub\\Controllers\\AdminMoviesController.cs",
+              "ViewState": "AgIAACsBAAAAAAAAAAAAwEoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T19:29:56.025Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAACoBAAAAAAAAAAAYwD4BAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-09T03:25:45.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T19:24:14.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "MovieHub\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\acer\\OneDrive\\Documents\\GitHub\\GitPractice\\MovieHub\\MovieHub\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "MovieHub\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAQwL4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-09T02:51:03.199Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
